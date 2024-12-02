@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
+
+
+import Home from './pages/Home';
+import Record from './pages/Record';
+import { ChakraProvider, Heading, Text } from '@chakra-ui/react'
+import Header from './section/Header';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <ChakraProvider>
+        <Header />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Record />} />
+
+          <Route path="/record" element={<Record />} />
+
+          <Route path="*" /> {/* This route is for handling 404 not found */}
+        </Routes>
+        </ChakraProvider>
+      </Router>
+      </>
   );
 }
 
